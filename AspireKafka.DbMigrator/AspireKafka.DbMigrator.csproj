@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>dotnet-AspireKafka.DbMigrator-88241865-c7d1-4c8e-9710-3978c6b6a383</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspireKafka.Infrastucture\AspireKafka.Infrastructure.csproj" />
+    <ProjectReference Include="..\AspireKafka.ServiceDefaults\AspireKafka.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>

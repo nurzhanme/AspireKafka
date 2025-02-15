@@ -1,0 +1,6 @@
+@AspireKafka.ConsumerTwo_HostAddress = http://localhost:5282
+
+GET {{AspireKafka.ConsumerTwo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

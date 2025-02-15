@@ -1,0 +1,90 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.AppHost", "AspireKafka.AppHost\AspireKafka.AppHost.csproj", "{F949E7F8-12BF-4C26-B8DE-4E61BA349C42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.ServiceDefaults", "AspireKafka.ServiceDefaults\AspireKafka.ServiceDefaults.csproj", "{27C636DB-BDA4-4843-9D0A-E469CF9CD47B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.ApiService", "AspireKafka.ApiService\AspireKafka.ApiService.csproj", "{86DA8EB7-9CE2-4CD2-87D6-2322CB92D6AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.Web", "AspireKafka.Web\AspireKafka.Web.csproj", "{CD634A46-785C-4C9C-A6C0-8CCBA4576B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.Tests", "AspireKafka.Tests\AspireKafka.Tests.csproj", "{3E8C5EE5-4CB2-4A25-B041-6F2D4513355D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aspire", "aspire", "{09C491ED-4010-468B-8ED0-52C2212AA665}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{289CA73F-2FB5-4F35-8656-C74C925B4C03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.ConsumerOne", "AspireKafka.ConsumerOne\AspireKafka.ConsumerOne.csproj", "{AE5F0182-A628-4D54-88BE-6A4C9C97AC8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.ConsumerTwo", "AspireKafka.ConsumerTwo\AspireKafka.ConsumerTwo.csproj", "{53466265-8D25-4F31-95FA-5418E4F196F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.Contracts", "AspireKafka.Contracts\AspireKafka.Contracts.csproj", "{22CBAE22-FDF2-4DFF-B109-7D969C19B681}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.Infrastructure", "AspireKafka.Infrastucture\AspireKafka.Infrastructure.csproj", "{DE228003-3168-4F8D-9F47-5838D73B5A97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.Domain", "AspireKafka.Domain\AspireKafka.Domain.csproj", "{9C5A7924-36B9-414C-8235-E272EB2A05B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspireKafka.DbMigrator", "AspireKafka.DbMigrator\AspireKafka.DbMigrator.csproj", "{A591E407-B1ED-4579-943C-CBEAAE82A813}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F949E7F8-12BF-4C26-B8DE-4E61BA349C42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F949E7F8-12BF-4C26-B8DE-4E61BA349C42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F949E7F8-12BF-4C26-B8DE-4E61BA349C42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F949E7F8-12BF-4C26-B8DE-4E61BA349C42}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27C636DB-BDA4-4843-9D0A-E469CF9CD47B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C636DB-BDA4-4843-9D0A-E469CF9CD47B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C636DB-BDA4-4843-9D0A-E469CF9CD47B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C636DB-BDA4-4843-9D0A-E469CF9CD47B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86DA8EB7-9CE2-4CD2-87D6-2322CB92D6AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86DA8EB7-9CE2-4CD2-87D6-2322CB92D6AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86DA8EB7-9CE2-4CD2-87D6-2322CB92D6AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86DA8EB7-9CE2-4CD2-87D6-2322CB92D6AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD634A46-785C-4C9C-A6C0-8CCBA4576B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD634A46-785C-4C9C-A6C0-8CCBA4576B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD634A46-785C-4C9C-A6C0-8CCBA4576B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD634A46-785C-4C9C-A6C0-8CCBA4576B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E8C5EE5-4CB2-4A25-B041-6F2D4513355D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E8C5EE5-4CB2-4A25-B041-6F2D4513355D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E8C5EE5-4CB2-4A25-B041-6F2D4513355D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E8C5EE5-4CB2-4A25-B041-6F2D4513355D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE5F0182-A628-4D54-88BE-6A4C9C97AC8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE5F0182-A628-4D54-88BE-6A4C9C97AC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE5F0182-A628-4D54-88BE-6A4C9C97AC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE5F0182-A628-4D54-88BE-6A4C9C97AC8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53466265-8D25-4F31-95FA-5418E4F196F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53466265-8D25-4F31-95FA-5418E4F196F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53466265-8D25-4F31-95FA-5418E4F196F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53466265-8D25-4F31-95FA-5418E4F196F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22CBAE22-FDF2-4DFF-B109-7D969C19B681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22CBAE22-FDF2-4DFF-B109-7D969C19B681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22CBAE22-FDF2-4DFF-B109-7D969C19B681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22CBAE22-FDF2-4DFF-B109-7D969C19B681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE228003-3168-4F8D-9F47-5838D73B5A97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE228003-3168-4F8D-9F47-5838D73B5A97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE228003-3168-4F8D-9F47-5838D73B5A97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE228003-3168-4F8D-9F47-5838D73B5A97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C5A7924-36B9-414C-8235-E272EB2A05B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C5A7924-36B9-414C-8235-E272EB2A05B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C5A7924-36B9-414C-8235-E272EB2A05B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C5A7924-36B9-414C-8235-E272EB2A05B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A591E407-B1ED-4579-943C-CBEAAE82A813}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A591E407-B1ED-4579-943C-CBEAAE82A813}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A591E407-B1ED-4579-943C-CBEAAE82A813}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A591E407-B1ED-4579-943C-CBEAAE82A813}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F949E7F8-12BF-4C26-B8DE-4E61BA349C42} = {09C491ED-4010-468B-8ED0-52C2212AA665}
+		{27C636DB-BDA4-4843-9D0A-E469CF9CD47B} = {09C491ED-4010-468B-8ED0-52C2212AA665}
+		{3E8C5EE5-4CB2-4A25-B041-6F2D4513355D} = {289CA73F-2FB5-4F35-8656-C74C925B4C03}
+	EndGlobalSection
+EndGlobal
