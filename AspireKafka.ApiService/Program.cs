@@ -1,4 +1,7 @@
+using AspireKafka.Domain;
 using AspireKafka.Infrastructure;
+using MassTransit;
+using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,6 +9,45 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddServiceDefaults();
 
 builder.Services.AddInfrastructure(builder.Configuration);
+
+
+    builder.Host.UseMassTransit((hostContext, x) =>
+{
+    
+    //x.TryAddScoped<IUserValidationService, UserValidationService>();
+
+    x.UsingInMemory();
+
+    x.AddRider(r =>
+    {
+        r.AddKafkaComponents();
+
+        var location = hostContext.Configuration.GetValue<int>("Warehouse:Location");
+        if (location == default)
+            throw new ConfigurationException("The warehouse location is required and was not configured.");
+
+        var warehouseTopicName = $"events.warehouse.{location}";
+
+        r.AddProducer<string, WarehouseEvent>(warehouseTopicName, (context, cfg) =>
+        {
+            // Configure the AVRO serializer, with the schema registry client
+            cfg.SetValueSerializer(new AvroSerializer<WarehouseEvent>(context.GetRequiredService<ISchemaRegistryClient>()));
+        });
+
+        r.AddProducer<string, ShipmentManifestReceived>("events.erp", (context, cfg) =>
+        {
+            // Configure the AVRO serializer, with the schema registry client
+            cfg.SetValueSerializer(new AvroSerializer<ShipmentManifestReceived>(context.GetRequiredService<ISchemaRegistryClient>()));
+        });
+
+        r.UsingKafka((context, cfg) =>
+        {
+            cfg.ClientId = "WarehouseApi";
+
+            cfg.Host(context);
+        });
+    });
+});
 
 
 // Add services to the container.
@@ -24,27 +66,19 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-string[] summaries = ["Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
 
-app.MapGet("/weatherforecast", () =>
+app.MapPost("/user", async ([FromBody] UserCreate user, DataContext context)
+    =>
 {
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    var newUser = User.Create(user.Username);
+    await context.Users.AddAsync(newUser);
+
+    await context.SaveChangesAsync();
+    return Results.Created($"/user/{user.Username}", user);
+});
 
 app.MapDefaultEndpoints();
 
 app.Run();
 
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+record UserCreate(string Username);
