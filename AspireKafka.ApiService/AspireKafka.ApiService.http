@@ -1,0 +1,11 @@
+﻿@AspireKafka.ApiService_HostAddress = http://localhost:5436
+@AspireKafka.ApiService_HostAddress_S = https://localhost:7422
+
+### Создание пользователя
+POST https://localhost:54152/User
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "JohnDoe"
+}

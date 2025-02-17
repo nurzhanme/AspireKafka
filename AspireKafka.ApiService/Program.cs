@@ -1,7 +1,9 @@
+﻿using System.IO.Compression;
 using AspireKafka.Domain;
 using AspireKafka.Infrastructure;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,9 +13,14 @@ builder.AddServiceDefaults();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 
-    builder.Host.UseMassTransit((hostContext, x) =>
+builder.Host.UseMassTransit((hostContext, x) =>
 {
-    
+    x.AddEntityFrameworkOutbox<DataContext>(options =>
+    {
+        options.QueryDelay = TimeSpan.FromSeconds(1);
+        options.UsePostgres();
+    });
+
     //x.TryAddScoped<IUserValidationService, UserValidationService>();
 
     x.UsingInMemory();
@@ -22,39 +29,40 @@ builder.Services.AddInfrastructure(builder.Configuration);
     {
         r.AddKafkaComponents();
 
-        var location = hostContext.Configuration.GetValue<int>("Warehouse:Location");
-        if (location == default)
-            throw new ConfigurationException("The warehouse location is required and was not configured.");
-
-        var warehouseTopicName = $"events.warehouse.{location}";
-
-        r.AddProducer<string, WarehouseEvent>(warehouseTopicName, (context, cfg) =>
+        r.AddProducer<string, UserCreatedEvent>(Const.UserTopicName, (context, cfg) =>
         {
             // Configure the AVRO serializer, with the schema registry client
-            cfg.SetValueSerializer(new AvroSerializer<WarehouseEvent>(context.GetRequiredService<ISchemaRegistryClient>()));
-        });
-
-        r.AddProducer<string, ShipmentManifestReceived>("events.erp", (context, cfg) =>
-        {
-            // Configure the AVRO serializer, with the schema registry client
-            cfg.SetValueSerializer(new AvroSerializer<ShipmentManifestReceived>(context.GetRequiredService<ISchemaRegistryClient>()));
+            //cfg.SetValueSerializer(new AvroSerializer<UserCreatedEvent>(context.GetRequiredService<ISchemaRegistryClient>()));
         });
 
         r.UsingKafka((context, cfg) =>
         {
-            cfg.ClientId = "WarehouseApi";
+            cfg.ClientId = "ApiService";
 
-            cfg.Host(context);
+            cfg.Host(context, builder.Configuration);
         });
     });
 });
 
+
+builder.Services.AddControllers();
 
 // Add services to the container.
 builder.Services.AddProblemDetails();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
 
 var app = builder.Build();
 
@@ -64,21 +72,20 @@ app.UseExceptionHandler();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    app.UseSwaggerUI(options =>
+    {
+        options.SwaggerEndpoint("/openapi/v1.json", "AspireKafka.ApiService v1");
+    });
+    app.MapScalarApiReference(options =>
+    {
+        options.Servers = [];
+    });
 }
 
+app.UseCors("AllowAll");
 
-app.MapPost("/user", async ([FromBody] UserCreate user, DataContext context)
-    =>
-{
-    var newUser = User.Create(user.Username);
-    await context.Users.AddAsync(newUser);
-
-    await context.SaveChangesAsync();
-    return Results.Created($"/user/{user.Username}", user);
-});
-
-app.MapDefaultEndpoints();
+app.MapControllers();
 
 app.Run();
 
-record UserCreate(string Username);
+public record UserCreate(string Username);
