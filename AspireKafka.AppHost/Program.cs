@@ -25,6 +25,7 @@ if (builder.Environment.IsDevelopment())
 
 var apiService = builder.AddProject<Projects.AspireKafka_ApiService>("apiservice")
     .WithReference(postgres)
+    .WaitFor(postgres)
     .WithReference(kafka)
     .WaitFor(kafka);
 

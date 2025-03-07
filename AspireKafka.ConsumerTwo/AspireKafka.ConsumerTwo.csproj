@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\AspireKafka.Infrastucture\AspireKafka.Infrastructure.csproj" />
     <ProjectReference Include="..\AspireKafka.ServiceDefaults\AspireKafka.ServiceDefaults.csproj" />
   </ItemGroup>
 

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AspireKafka.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250215134247_Init")]
-    partial class Init
+    [Migration("20250307103720_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
