@@ -7,21 +7,24 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Aspire.Confluent.Kafka" Version="9.0.0" />
-		<PackageReference Include="Confluent.SchemaRegistry.Serdes.Avro" Version="2.8.0" />
-		<PackageReference Include="MassTransit.EntityFrameworkCore" Version="8.3.6" />
-		<PackageReference Include="MassTransit.Kafka" Version="8.3.6" />
+		<PackageReference Include="DotNetCore.CAP" Version="8.3.3" />
+		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.3.3" />
+		<PackageReference Include="DotNetCore.CAP.Kafka" Version="8.3.3" />
+		<PackageReference Include="DotNetCore.CAP.PostgreSql" Version="8.3.3" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="9.0.2" />
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\AspireKafka.Contracts\AspireKafka.Contracts.csproj" />
 		<ProjectReference Include="..\AspireKafka.Domain\AspireKafka.Domain.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
 	</ItemGroup>
 
 </Project>

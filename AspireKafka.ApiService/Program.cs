@@ -1,7 +1,6 @@
 ﻿using System.IO.Compression;
 using AspireKafka.Domain;
 using AspireKafka.Infrastructure;
-using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Scalar.AspNetCore;
 
@@ -13,36 +12,7 @@ builder.AddServiceDefaults();
 builder.Services.AddInfrastructure(builder.Configuration);
 
 
-builder.Host.UseMassTransit((hostContext, x) =>
-{
-    x.AddEntityFrameworkOutbox<DataContext>(options =>
-    {
-        options.QueryDelay = TimeSpan.FromSeconds(1);
-        options.UsePostgres();
-    });
 
-    //x.TryAddScoped<IUserValidationService, UserValidationService>();
-
-    x.UsingInMemory();
-
-    x.AddRider(r =>
-    {
-        r.AddKafkaComponents();
-
-        r.AddProducer<string, UserCreatedEvent>(Const.UserTopicName, (context, cfg) =>
-        {
-            // Configure the AVRO serializer, with the schema registry client
-            //cfg.SetValueSerializer(new AvroSerializer<UserCreatedEvent>(context.GetRequiredService<ISchemaRegistryClient>()));
-        });
-
-        r.UsingKafka((context, cfg) =>
-        {
-            cfg.ClientId = "ApiService";
-
-            cfg.Host(context, builder.Configuration);
-        });
-    });
-});
 
 
 builder.Services.AddControllers();
