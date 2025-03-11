@@ -65,6 +65,8 @@ public static class Extensions
                     //.AddGrpcClientInstrumentation()
                     .AddHttpClientInstrumentation()
                     .AddEntityFrameworkCoreInstrumentation()
+                    //.AddKafkaProducerInstrumentation<string, string>()
+                    //.AddKafkaConsumerInstrumentation<string, string>()
                     .AddNpgsql()
                     ;
             });
